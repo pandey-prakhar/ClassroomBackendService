@@ -12,11 +12,12 @@ from core.apis.decorators import AuthPrincipal
 from core.models.users import User
 from core.models.students import Student
 from core.models.teachers import Teacher
+from core.models.principals import Principal
 from core.models.assignments import Assignment
 
 # revision identifiers, used by Alembic.
 revision = '2087a1db8595'
-down_revision = '4078b3b57e24'
+down_revision = '52a401750a76'
 branch_labels = None
 depends_on = None
 
@@ -43,6 +44,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('student_id', sa.Integer(), nullable=False),
     sa.Column('teacher_id', sa.Integer(), nullable=True),
+    sa.Column('principal_id', sa.Integer(), nullable=True),
     sa.Column('content', sa.Text(), nullable=True),
     sa.Column('grade', sa.Enum('A', 'B', 'C', 'D', name='gradeenum'), nullable=True),
     sa.Column('state', sa.Enum('DRAFT', 'SUBMITTED', name='assignmentstateenum'), nullable=True),
@@ -50,6 +52,7 @@ def upgrade():
     sa.Column('updated_at', sa.TIMESTAMP(timezone=True), nullable=False),
     sa.ForeignKeyConstraint(['student_id'], ['students.id'], ),
     sa.ForeignKeyConstraint(['teacher_id'], ['teachers.id'], ),
+    sa.ForeignKeyConstraint(['principal_id'], ['principals.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
 
@@ -57,6 +60,7 @@ def upgrade():
     student_2 = Student(user_id=User.get_by_email('student2@fylebe.com').id)
     teacher_1 = Teacher(user_id=User.get_by_email('teacher1@fylebe.com').id)
     teacher_2 = Teacher(user_id=User.get_by_email('teacher2@fylebe.com').id)
+   
 
     db.session.add(student_1)
     db.session.add(student_2)
@@ -78,6 +82,7 @@ def upgrade():
     db.session.add(assignment_5)
 
     db.session.flush()
+    principal = Principal(user_id=User.get_by_email('principal@fylebe.com').id)
 
     Assignment.submit(
         _id=assignment_1.id,
