@@ -30,10 +30,10 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    principal_user = User(email='principal@fylebe.com', username='principal')
+    principal_user = User(email='principal@slrtce.com', username='principal')
     db.session.add(principal_user)
 
-    principal = Principal(user_id=User.get_by_email('principal@fylebe.com').id)
+    principal = Principal(user_id=User.get_by_email('principal@slrtce.com').id)
 
     db.session.add(principal)
     db.session.commit()

@@ -31,10 +31,10 @@ def upgrade():
     sa.UniqueConstraint('username')
     )
 
-    student_user_1 = User(email='student1@fylebe.com', username='student1')
-    student_user_2 = User(email='student2@fylebe.com', username='student2')
-    teacher_user_1 = User(email='teacher1@fylebe.com', username='teacher1')
-    teacher_user_2 = User(email='teacher2@fylebe.com', username='teacher2')
+    student_user_1 = User(email='student1@slrtce.com', username='student1')
+    student_user_2 = User(email='student2@slrtce.com', username='student2')
+    teacher_user_1 = User(email='teacher1@slrtce.com', username='teacher1')
+    teacher_user_2 = User(email='teacher2@slrtce.com', username='teacher2')
 
     db.session.add(student_user_1)
     db.session.add(student_user_2)

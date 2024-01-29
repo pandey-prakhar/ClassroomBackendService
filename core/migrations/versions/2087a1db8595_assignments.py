@@ -56,10 +56,10 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-    student_1 = Student(user_id=User.get_by_email('student1@fylebe.com').id)
-    student_2 = Student(user_id=User.get_by_email('student2@fylebe.com').id)
-    teacher_1 = Teacher(user_id=User.get_by_email('teacher1@fylebe.com').id)
-    teacher_2 = Teacher(user_id=User.get_by_email('teacher2@fylebe.com').id)
+    student_1 = Student(user_id=User.get_by_email('student1@slrtce.com').id)
+    student_2 = Student(user_id=User.get_by_email('student2@slrtce.com').id)
+    teacher_1 = Teacher(user_id=User.get_by_email('teacher1@slrtce.com').id)
+    teacher_2 = Teacher(user_id=User.get_by_email('teacher2@slrtce.com').id)
    
 
     db.session.add(student_1)
@@ -82,7 +82,7 @@ def upgrade():
     db.session.add(assignment_5)
 
     db.session.flush()
-    principal = Principal(user_id=User.get_by_email('principal@fylebe.com').id)
+    principal = Principal(user_id=User.get_by_email('principal@slrtce.com').id)
 
     Assignment.submit(
         _id=assignment_1.id,
